@@ -1,0 +1,14 @@
+.form {
+  border: 1px solid rgb(29, 82, 196);
+  width: 480px;
+  padding: 50px;
+}
+
+.form__item {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form__input {
+  margin-left: 5px;
+}
