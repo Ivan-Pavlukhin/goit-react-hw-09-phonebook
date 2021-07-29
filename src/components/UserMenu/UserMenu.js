@@ -1,11 +1,17 @@
-import { connect } from 'react-redux';
+import { useCallback } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { authSelectors, authOperations } from '../../redux/auth';
 import style from './UserMenu.module.css';
 
-function UserMenu({ userName, onLogout, token }) {
-  const handelClick = () => {
-    onLogout(token);
-  };
+export default function UserMenu() {
+  const dispatch = useDispatch();
+
+  const userName = useSelector(authSelectors.getUsername);
+  const token = useSelector(authSelectors.getIsAuthenticated);
+
+  const handelClick = useCallback(() => {
+    dispatch(authOperations.logout(token));
+  }, [dispatch]);
 
   return (
     <div className={style.nav}>
@@ -15,13 +21,13 @@ function UserMenu({ userName, onLogout, token }) {
   );
 }
 
-const mapDispatchTOProps = {
-  onLogout: authOperations.logout,
-};
+// const mapDispatchTOProps = {
+//   onLogout: authOperations.logout,
+// };
 
-const mapStateToProps = state => ({
-  userName: authSelectors.getUsername(state),
-  token: authSelectors.getIsAuthenticated(state),
-});
+// const mapStateToProps = state => ({
+//   userName: authSelectors.getUsername(state),
+//   token: authSelectors.getIsAuthenticated(state),
+// });
 
-export default connect(mapStateToProps, mapDispatchTOProps)(UserMenu);
+// export default connect(mapStateToProps, mapDispatchTOProps)(UserMenu);

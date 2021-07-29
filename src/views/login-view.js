@@ -1,49 +1,51 @@
-import { Component } from 'react';
-import { connect } from 'react-redux';
+import { useCallback, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { authOperations } from '../redux/auth';
-class LogIn extends Component {
-  state = {
-    email: '',
-    password: '',
-  };
 
-  handelChange = ({ target: { name, value } }) => {
-    this.setState({ [name]: value });
-  };
+// const mapDispatchToProps = {
+//   onLogin: authOperations.login,
+// };
 
-  handelSubmit = e => {
-    e.preventDefault();
+// export default connect(null, mapDispatchToProps)(LogIn);
 
-    this.props.onLogin(this.state);
+export default function LogIn() {
+  const dispatch = useDispatch();
 
-    this.setState({ email: '', password: '' });
-  };
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
 
-  render() {
-    return (
-      <form onSubmit={this.handelSubmit}>
-        <h1>LogIn</h1>
-        <label>
-          Email
-          <input type="text" value={this.state.email} name="email" onChange={this.handelChange} />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={this.state.password}
-            name="password"
-            onChange={this.handelChange}
-          />
-        </label>
-        <button type="submit">Login</button>
-      </form>
-    );
-  }
+  const handelChangeEmail = useCallback(({ target }) => {
+    setEmail(target.value);
+  }, []);
+
+  const handelChangePassword = useCallback(({ target }) => {
+    setPassword(target.value);
+  }, []);
+
+  const handelSubmit = useCallback(
+    e => {
+      e.preventDefault();
+
+      dispatch(authOperations.login({ email, password }));
+
+      setEmail('');
+      setPassword('');
+    },
+    [dispatch, email, password],
+  );
+
+  return (
+    <form onSubmit={handelSubmit}>
+      <h1>LogIn</h1>
+      <label>
+        Email
+        <input type="text" value={email} name="email" onChange={handelChangeEmail} />
+      </label>
+      <label>
+        Password
+        <input type="password" value={password} name="password" onChange={handelChangePassword} />
+      </label>
+      <button type="submit">Login</button>
+    </form>
+  );
 }
-
-const mapDispatchToProps = {
-  onLogin: authOperations.login,
-};
-
-export default connect(null, mapDispatchToProps)(LogIn);

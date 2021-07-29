@@ -1,30 +1,20 @@
-import { Component } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { phonebookSelectors, phonebookOperations, findContacts } from '../redux/phonebook';
 import AddContact from '../components/AddContact/AddContact';
 import ContactsList from '../components/ContactsList/ContactsList';
 import FindContacts from '../components/FindContacts/FindContacts';
-class Contacts extends Component {
-  render() {
-    return (
-      <>
-        <h1>Phonebook</h1>
-        <AddContact />
-        <FindContacts value={this.props.filter} onChange={this.propschangeFilter} />
-        <ContactsList onClick={this.props.deleteContacts} />
-      </>
-    );
-  }
+
+export default function Contacts() {
+  const dispatch = useDispatch();
+
+  const filter = useSelector(phonebookSelectors.getFilter);
+
+  return (
+    <>
+      <h1>Phonebook</h1>
+      <AddContact />
+      <FindContacts value={filter} onChange={dispatch(findContacts(filter))} />
+      <ContactsList onClick={dispatch(phonebookOperations.deleteContact())} />
+    </>
+  );
 }
-
-const mapPropsToState = state => ({
-  contacts: phonebookSelectors.getContacts(state),
-  filter: phonebookSelectors.getFilter(state),
-});
-
-const mapDispatchToState = dispatch => ({
-  changeFilter: ({ filter }) => dispatch(findContacts({ filter })),
-  deleteContact: ({ id }) => dispatch(phonebookOperations.deleteContact({ id })),
-});
-
-export default connect(mapPropsToState, mapDispatchToState)(Contacts);

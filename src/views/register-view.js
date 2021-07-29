@@ -1,67 +1,85 @@
-import { Component } from 'react';
-import { connect } from 'react-redux';
+import { Component, useCallback, useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
 import { authOperations } from '../redux/auth';
 
-class Register extends Component {
-  state = {
-    name: '',
-    email: '',
-    password: '',
-  };
+// const mapDispatchToProps = {
+//   onRegister: authOperations.register,
+// };
 
-  handelChange = ({ target: { name, value } }) => {
-    this.setState({ [name]: value });
-  };
+// export default connect(null, mapDispatchToProps)(Register);
 
-  handelSubmit = e => {
-    e.preventDefault();
+export default function Register() {
+  const dispatch = useDispatch();
 
-    this.props.onRegister(this.state);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    this.setState({ name: '', email: '', password: '' });
-  };
+  const handelChangeName = useCallback(({ target: { value } }) => {
+    setName(value);
+  }, []);
 
-  render() {
-    return (
-      <form onSubmit={this.handelSubmit}>
-        <h1>Register</h1>
-        <label>
-          Name
-          <input
-            type="text"
-            value={this.state.name}
-            name="name"
-            autoComplete="off"
-            onChange={this.handelChange}
-          />
-        </label>
-        <label>
-          Email
-          <input
-            type="email"
-            value={this.state.email}
-            name="email"
-            autoComplete="off"
-            onChange={this.handelChange}
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={this.state.password}
-            name="password"
-            onChange={this.handelChange}
-          />
-        </label>
-        <button type="submit">Register</button>
-      </form>
-    );
-  }
+  const handelChangeEmail = useCallback(({ target: { value } }) => {
+    setEmail(value);
+  }, []);
+
+  const handelChangePassword = useCallback(({ target: { value } }) => {
+    setPassword(value);
+  }, []);
+
+  const handelSubmit = useCallback(
+    e => {
+      e.preventDefault();
+
+      dispatch(authOperations.register({ name, password, email }));
+
+      setName('');
+      setPassword('');
+      setEmail('');
+    },
+    [dispatch, name, password, email],
+  );
+
+  return (
+    <form onSubmit={handelSubmit}>
+      <h1>Register</h1>
+      <label>
+        Name
+        <input
+          type="text"
+          value={name}
+          name="name"
+          autoComplete="off"
+          onChange={handelChangeName}
+        />
+      </label>
+      <label>
+        Email
+        <input
+          type="email"
+          value={email}
+          name="email"
+          autoComplete="off"
+          onChange={handelChangeEmail}
+        />
+      </label>
+      <label>
+        Password
+        <input type="password" value={password} name="password" onChange={handelChangePassword} />
+      </label>
+      <button type="submit">Register</button>
+    </form>
+  );
 }
 
-const mapDispatchToProps = {
-  onRegister: authOperations.register,
-};
+// class Register extends Component {
+//   state = {
+//     name: '',
+//     email: '',
+//     password: '',
+//   };
 
-export default connect(null, mapDispatchToProps)(Register);
+//   render() {
+
+//   }
+// }
