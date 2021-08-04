@@ -17,7 +17,7 @@ export default function ContactsList() {
   return (
     <>
       <ul className={style.list}>
-        {isLoading && <h1>Loading...</h1>}
+        {isLoading && <h2>Loading...</h2>}
         {contactsList &&
           contactsList.map(item => (
             <li key={item.id} className={style.item}>

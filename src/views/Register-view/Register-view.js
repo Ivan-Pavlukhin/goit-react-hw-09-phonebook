@@ -1,6 +1,8 @@
-import { Component, useCallback, useState } from 'react';
-import { connect, useDispatch } from 'react-redux';
-import { authOperations } from '../redux/auth';
+import { useCallback, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { authOperations } from '../../redux/auth';
+import style from './Register-view.module.css';
 
 // const mapDispatchToProps = {
 //   onRegister: authOperations.register,
@@ -41,7 +43,7 @@ export default function Register() {
   );
 
   return (
-    <form onSubmit={handelSubmit}>
+    <form onSubmit={handelSubmit} className={style.form}>
       <h1>Register</h1>
       <label>
         Name

@@ -9,8 +9,8 @@ export default function FindContacts() {
   const value = useSelector(phonebookSelectors.getFilter);
 
   return (
-    <>
-      <h1>Contacts</h1>
+    <div className={style.container}>
+      <h2>Contacts</h2>
       <label>
         Find contacts by name
         <input
@@ -20,7 +20,7 @@ export default function FindContacts() {
           onChange={e => dispatch(findContacts(e.currentTarget.value))}
         />
       </label>
-    </>
+    </div>
   );
 }
 

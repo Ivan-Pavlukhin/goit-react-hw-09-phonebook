@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { authOperations } from '../redux/auth';
+
+import { authOperations } from '../../redux/auth';
+import style from './Login-view.module.css';
 
 // const mapDispatchToProps = {
 //   onLogin: authOperations.login,
@@ -35,7 +37,7 @@ export default function LogIn() {
   );
 
   return (
-    <form onSubmit={handelSubmit}>
+    <form onSubmit={handelSubmit} className={style.form}>
       <h1>LogIn</h1>
       <label>
         Email

@@ -1,5 +1,8 @@
 .form {
-  border: 1px solid rgb(29, 82, 196);
+  margin-right: auto;
+  margin-left: auto;
+  border: 2px solid #ff6e40;
+  border-radius: 15px;
   width: 480px;
   padding: 50px;
 }

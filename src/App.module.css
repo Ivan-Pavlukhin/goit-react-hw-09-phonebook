@@ -1,7 +1,17 @@
 .wrapper {
+  min-height: 800px;
   max-width: 1170px;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 100px;
+
+  background-color: #f5f0e1;
+  /* background-image: linear-gradient(110.3deg, rgba(73, 93, 109, 1) 4.3%, rgba(49, 55, 82, 1) 96.7%); */
+  /* background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(97, 186, 255, 1) 0%,
+    rgba(166, 239, 253, 1) 90.1%
+  ); */
 }
 
 a {

@@ -11,7 +11,7 @@ export default function UserMenu() {
 
   const handelClick = useCallback(() => {
     dispatch(authOperations.logout(token));
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   return (
     <div className={style.nav}>

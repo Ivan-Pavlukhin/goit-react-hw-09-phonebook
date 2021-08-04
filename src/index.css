@@ -4,8 +4,35 @@ body {
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #1e3d59;
 }
-
+ul {
+  margin-bottom: 0;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+button {
+  cursor: pointer;
+}
+
+a,
+button {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 15px;
+  background-color: #1e3d59;
+  color: #f5f0e1;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus,
+button:hover,
+button:focus {
+  background-color: #ffc13d;
+  color: rgb(73, 63, 63);
 }
