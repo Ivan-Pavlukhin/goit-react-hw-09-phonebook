@@ -43,34 +43,49 @@ export default function Register() {
   );
 
   return (
-    <form onSubmit={handelSubmit} className={style.form}>
-      <h1>Register</h1>
-      <label>
-        Name
-        <input
-          type="text"
-          value={name}
-          name="name"
-          autoComplete="off"
-          onChange={handelChangeName}
-        />
-      </label>
-      <label>
-        Email
-        <input
-          type="email"
-          value={email}
-          name="email"
-          autoComplete="off"
-          onChange={handelChangeEmail}
-        />
-      </label>
-      <label>
-        Password
-        <input type="password" value={password} name="password" onChange={handelChangePassword} />
-      </label>
-      <button type="submit">Register</button>
-    </form>
+    <>
+      <h1 className={style.form__title}>Register</h1>
+      <form className={style.form} onSubmit={handelSubmit} className={style.form}>
+        <label className={style.form__item}>
+          Name
+          <input
+            className={style.form__input}
+            autoComplete="off"
+            type="text"
+            value={name}
+            name="name"
+            autoComplete="off"
+            onChange={handelChangeName}
+          />
+        </label>
+        <label className={style.form__item}>
+          Email
+          <input
+            className={style.form__input}
+            autoComplete="off"
+            type="email"
+            value={email}
+            name="email"
+            autoComplete="off"
+            onChange={handelChangeEmail}
+          />
+        </label>
+        <label className={style.form__item}>
+          Password
+          <input
+            className={style.form__input}
+            autoComplete="off"
+            type="password"
+            value={password}
+            name="password"
+            onChange={handelChangePassword}
+          />
+        </label>
+        <button className={style.form__button} type="submit">
+          Register
+        </button>
+      </form>
+    </>
   );
 }
 

@@ -37,17 +37,35 @@ export default function LogIn() {
   );
 
   return (
-    <form onSubmit={handelSubmit} className={style.form}>
-      <h1>LogIn</h1>
-      <label>
-        Email
-        <input type="text" value={email} name="email" onChange={handelChangeEmail} />
-      </label>
-      <label>
-        Password
-        <input type="password" value={password} name="password" onChange={handelChangePassword} />
-      </label>
-      <button type="submit">Login</button>
-    </form>
+    <>
+      <h1 className={style.form__title}>LogIn</h1>
+      <form className={style.form} onSubmit={handelSubmit} className={style.form}>
+        <label className={style.form__item}>
+          Email
+          <input
+            className={style.form__input}
+            autoComplete="off"
+            type="text"
+            value={email}
+            name="email"
+            onChange={handelChangeEmail}
+          />
+        </label>
+        <label className={style.form__item}>
+          Password
+          <input
+            className={style.form__input}
+            autoComplete="off"
+            type="password"
+            value={password}
+            name="password"
+            onChange={handelChangePassword}
+          />
+        </label>
+        <button className={style.form__button} type="submit">
+          Login
+        </button>
+      </form>
+    </>
   );
 }

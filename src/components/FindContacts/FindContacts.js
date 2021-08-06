@@ -10,8 +10,8 @@ export default function FindContacts() {
 
   return (
     <div className={style.container}>
-      <h2>Contacts</h2>
-      <label>
+      <h2 className={style.title}>Contacts</h2>
+      <label className={style.label}>
         Find contacts by name
         <input
           className={style.input}

@@ -1,13 +1,74 @@
 .list {
-  width: 300px;
+  height: 800px;
+  overflow-y: scroll;
+  max-width: 600px;
+  margin-top: 30px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.list::-webkit-scrollbar {
+  width: 16px; /* ширина для вертикального скролла */
+  height: 8px; /* высота для горизонтального скролла */
+  background-color: rgba(255, 110, 64, 0.4);
+  border-radius: 9em;
+}
+
+/* ползунок скроллбара */
+.list::-webkit-scrollbar-thumb {
+  background-color: #1e3d59;
+  border-radius: 9em;
+  /* box-shadow: inset 1px 1px 10px #f3faf7; */
 }
 
 .item {
   display: flex;
-  margin-top: 5px;
+  height: 46px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border-radius: 20px;
+}
+
+.item:nth-child(2n-1) {
+  background-color: rgba(255, 110, 64, 0.4);
+}
+
+.item:nth-child(2n) {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .list__button {
   margin-right: 0;
   margin-left: auto;
+  margin-right: 15px;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.appear {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.appearActive {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 300ms linear;
+}
+
+.exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.exitActive {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 300ms linear;
 }
