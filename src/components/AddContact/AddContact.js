@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import style from './AddContact.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { phonebookSelectors, phonebookOperations } from '../../redux/phonebook';
+import { CSSTransition } from 'react-transition-group';
 
 export default function AddContact() {
   const dispatch = useDispatch();
@@ -21,6 +22,8 @@ export default function AddContact() {
     setNumber(target.value);
   }, []);
 
+  const [repeatName, setRepeatName] = useState(false);
+
   const searchRepeatName = useCallback(() => {
     const normalizedName = name.toLowerCase();
     return contacts.filter(contact => contact.name.toLowerCase() === normalizedName);
@@ -30,7 +33,10 @@ export default function AddContact() {
     e => {
       e.preventDefault();
       if (searchRepeatName().length !== 0) {
-        alert(`${name} is already in contacts`);
+        setRepeatName(true);
+        setTimeout(() => {
+          setRepeatName(false);
+        }, 3500);
         return;
       }
 
@@ -43,6 +49,12 @@ export default function AddContact() {
 
   return (
     <>
+      {console.log(repeatName)}
+      <CSSTransition in={repeatName} timeout={500} unmountOnExit classNames={style}>
+        <div className={style.notification}>
+          <p>ser is already in contacts</p>
+        </div>
+      </CSSTransition>
       <h2 className={style.form__title}>Add Contact</h2>
       <form className={style.form} onSubmit={handelSubmit}>
         <label className={style.form__item}>
