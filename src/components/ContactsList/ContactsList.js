@@ -1,13 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-import animationStyle from './Animation.module.css';
 import style from './ContactsList.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { phonebookSelectors, phonebookOperations } from '../../redux/phonebook';
+import Modal from '../Modal/Modal';
 
 export default function ContactsList() {
+  const [openModal, setOpenModal] = useState(false);
+
+  const handelOpenModal = ({ id, name, number }) => {
+    setOpenModal(!openModal);
+    setId(id);
+    setName(name);
+    setNumber(number);
+  };
+
+  const [id, setId] = useState('');
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,17 +40,36 @@ export default function ContactsList() {
                 <span className={style.contact}>
                   {item.name}: {item.number}
                 </span>
-                <button
-                  className={style.list__button}
-                  onClick={() => dispatch(phonebookOperations.deleteContact(item.id))}
-                >
-                  Delete
-                </button>
+                <div>
+                  <button
+                    className={style.list__button}
+                    onClick={() => {
+                      handelOpenModal(item);
+                    }}
+                  >
+                    Change
+                  </button>
+                  <button
+                    className={style.list__button}
+                    onClick={() => dispatch(phonebookOperations.deleteContact(item.id))}
+                  >
+                    Delete
+                  </button>
+                </div>
               </li>
             </CSSTransition>
           ))}
       </TransitionGroup>
       {isLoading && <h2>Loading...</h2>}
+      {openModal && (
+        <Modal
+          setOpenModal={setOpenModal}
+          openModal={openModal}
+          id={id}
+          name={name}
+          number={number}
+        />
+      )}
     </>
   );
 }

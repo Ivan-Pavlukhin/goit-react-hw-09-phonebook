@@ -6,10 +6,6 @@ import { phonebookSelectors, phonebookOperations } from '../../redux/phonebook';
 import { CSSTransition } from 'react-transition-group';
 
 export default function AddContact() {
-  const dispatch = useDispatch();
-
-  const contacts = useSelector(phonebookSelectors.getContacts);
-
   const [name, setName] = useState('');
 
   const handelChangeName = useCallback(({ target }) => {
@@ -21,6 +17,9 @@ export default function AddContact() {
   const handelChangeNumber = useCallback(({ target }) => {
     setNumber(target.value);
   }, []);
+  const dispatch = useDispatch();
+
+  const contacts = useSelector(phonebookSelectors.getContacts);
 
   const [repeatName, setRepeatName] = useState(false);
 
@@ -49,46 +48,47 @@ export default function AddContact() {
 
   return (
     <>
-      {console.log(repeatName)}
       <CSSTransition in={repeatName} timeout={500} unmountOnExit classNames={style}>
         <div className={style.notification}>
-          <p>ser is already in contacts</p>
+          <p>{name} is already in contacts</p>
         </div>
       </CSSTransition>
-      <h2 className={style.form__title}>Add Contact</h2>
-      <form className={style.form} onSubmit={handelSubmit}>
-        <label className={style.form__item}>
-          Name
-          <input
-            className={style.form__input}
-            type="text"
-            name="name"
-            value={name}
-            autoComplete="off"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-            required
-            onChange={handelChangeName}
-          />
-        </label>
-        <label className={style.form__item}>
-          Number
-          <input
-            className={style.form__input}
-            type="tel"
-            name="number"
-            value={number}
-            autoComplete="off"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-            required
-            onChange={handelChangeNumber}
-          />
-        </label>
-        <button className={style.form__button} type="submit">
-          Add contact
-        </button>
-      </form>
+      <h2 className={style.title}>Add Contact</h2>
+      {
+        <form className={style.form} onSubmit={handelSubmit}>
+          <label className={style.form__item}>
+            Name
+            <input
+              className={style.form__input}
+              type="text"
+              name="name"
+              value={name}
+              autoComplete="off"
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+              required
+              onChange={handelChangeName}
+            />
+          </label>
+          <label className={style.form__item}>
+            Number
+            <input
+              className={style.form__input}
+              type="tel"
+              name="number"
+              value={number}
+              autoComplete="off"
+              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+              required
+              onChange={handelChangeNumber}
+            />
+          </label>
+          <button className={style.form__button} type="submit">
+            Add contact
+          </button>
+        </form>
+      }
     </>
   );
 }

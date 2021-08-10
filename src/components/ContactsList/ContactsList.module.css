@@ -25,6 +25,7 @@
 
 .item {
   display: flex;
+  justify-content: space-between;
   height: 46px;
   padding-top: 7px;
   padding-bottom: 7px;
@@ -51,12 +52,12 @@
   padding-left: 10px;
 }
 
-.appear {
+.enter {
   opacity: 0;
   transform: translateX(-100%);
 }
 
-.appearActive {
+.enterActive {
   opacity: 1;
   transform: translateX(0);
   transition: all 300ms linear;

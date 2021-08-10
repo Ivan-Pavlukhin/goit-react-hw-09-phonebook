@@ -4,12 +4,6 @@ import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth';
 import style from './Register-view.module.css';
 
-// const mapDispatchToProps = {
-//   onRegister: authOperations.register,
-// };
-
-// export default connect(null, mapDispatchToProps)(Register);
-
 export default function Register() {
   const dispatch = useDispatch();
 
@@ -45,7 +39,7 @@ export default function Register() {
   return (
     <>
       <h1 className={style.form__title}>Register</h1>
-      <form className={style.form} onSubmit={handelSubmit} className={style.form}>
+      <form className={style.form} onSubmit={handelSubmit}>
         <label className={style.form__item}>
           Name
           <input
@@ -54,7 +48,6 @@ export default function Register() {
             type="text"
             value={name}
             name="name"
-            autoComplete="off"
             onChange={handelChangeName}
           />
         </label>
@@ -66,7 +59,6 @@ export default function Register() {
             type="email"
             value={email}
             name="email"
-            autoComplete="off"
             onChange={handelChangeEmail}
           />
         </label>
@@ -88,15 +80,3 @@ export default function Register() {
     </>
   );
 }
-
-// class Register extends Component {
-//   state = {
-//     name: '',
-//     email: '',
-//     password: '',
-//   };
-
-//   render() {
-
-//   }
-// }

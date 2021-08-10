@@ -13,4 +13,8 @@ export const deleteContactRequest = createAction('phonebook/deleteContactRequest
 export const deleteContactSuccess = createAction('phonebook/deleteContactSuccess');
 export const deleteContactError = createAction('phonebook/deleteContactError');
 
+export const updateContactRequest = createAction('phonebook/updateContactRequest');
+export const updateContactSuccess = createAction('phonebook/updateContactSuccess');
+export const updateContactError = createAction('phonebook/updateContactError');
+
 export const findContacts = createAction('phonebook/find');
