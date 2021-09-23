@@ -1,9 +1,13 @@
 .site__bar {
-  display: flex;
-  justify-content: space-between;
-
   padding-top: 20px;
   padding-bottom: 20px;
   padding-right: 5px;
   background: #ff6e40;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1170px;
+  margin: 0 auto;
 }

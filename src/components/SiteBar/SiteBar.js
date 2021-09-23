@@ -10,9 +10,11 @@ export default function SiteBar() {
 
   return (
     <div className={style.site__bar}>
-      <Link to="/">Home</Link>
-      {isAuthenticated && <Link to="/contacts">Contacts</Link>}
-      {isAuthenticated ? <UserMenu /> : <AuthNav />}
+      <div className={style.container}>
+        <Link to="/">Home</Link>
+        {isAuthenticated && <Link to="/contacts">Contacts</Link>}
+        {isAuthenticated ? <UserMenu /> : <AuthNav />}
+      </div>
     </div>
   );
 }

@@ -23,14 +23,21 @@ export default function App() {
   return (
     <div className={style.wrapper}>
       <SiteBar />
-      <Suspense fallback={<p>Loading...</p>}>
-        <Switch>
-          <PublicRoute path="/login" component={LogIn} restricted redirectTo={'/contacts'} />
-          <PrivateRoute path="/contacts" component={Contacts} redirectTo={'/login'} />
-          <PublicRoute path="/register" component={Register} restricted redirectTo={'/contacts'} />
-          <PublicRoute path="/" component={Home} />
-        </Switch>
-      </Suspense>
+      <div className={style.container}>
+        <Suspense fallback={<p>Loading...</p>}>
+          <Switch>
+            <PublicRoute path="/login" component={LogIn} restricted redirectTo={'/contacts'} />
+            <PrivateRoute path="/contacts" component={Contacts} redirectTo={'/login'} />
+            <PublicRoute
+              path="/register"
+              component={Register}
+              restricted
+              redirectTo={'/contacts'}
+            />
+            <PublicRoute path="/" component={Home} />
+          </Switch>
+        </Suspense>
+      </div>
     </div>
   );
 }
